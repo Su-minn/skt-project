@@ -1,3 +1,7 @@
+# 발표 자료 영상 (Google Drive)
+https://drive.google.com/file/d/1eznk7mxIb5EqQ3jutAw3uxashRSDuUgU/view?usp=sharing
+
+
 # Personal Knowledge Assistant
 ## 주제: LangGraph Tutor
 
