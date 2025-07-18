@@ -1,0 +1,6 @@
+{
+  "total_documents": 277,
+  "preprocess_func": "bm25_preprocess_func",
+  "created_at": "2025-07-18",
+  "source": "LangGraph 공식문서"
+}

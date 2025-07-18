@@ -1,0 +1,322 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph.refined",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "StateGraph",
+      "description": "상태 기반의 그래프 구조를 사용하여 대화 흐름을 체계적으로 관리하는 핵심 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "State",
+      "description": "그래프에서 처리하는 데이터의 기본 구조를 정의하는 요소",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Node",
+      "description": "그래프 구조의 기본 구성 요소로, 독립적인 작업 단위를 나타내는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Graph",
+      "description": "여러 노드들을 엣지로 연결한 집합체로, 전체 데이터 흐름을 결정하는 구조",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Edge",
+      "description": "노드 간의 연결 경로를 정의하며, 데이터 흐름과 분기를 담당하는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Command",
+      "description": "노드 함수의 반환값으로 사용되어 상태 관리와 흐름 제어를 동시에 수행하는 LangGraph의 제어 도구",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Edge",
+      "description": "조건에 따라 다른 경로로 분기할 수 있는 엣지로, 유연한 워크플로우 분기를 가능하게 하는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "invoke",
+      "description": "그래프의 가장 기본적인 실행 방법으로, 최종 결과값만 반환하는 동기적 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "stream",
+      "description": "그래프 실행의 중간 과정을 실시간으로 확인할 수 있는 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Concept",
+      "name": "LangGraph Studio",
+      "description": "다중 에이전트 워크플로우를 구축하고 테스트할 수 있는 LangGraph의 시각적 플랫폼",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 지정할 수 있는 반환 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "TypedDict",
+      "description": "상태(State) 구조를 정의할 때 사용하는 Python 타입 명세 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM 인스턴스를 생성하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "벡터 DB를 관리하고 검색하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StrOutputParser",
+      "description": "LLM의 출력을 문자열로 파싱하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "State 정의 예시",
+      "description": "TypedDict를 사용하여 그래프의 상태 구조를 정의하는 코드",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "요약 생성 노드 예시",
+      "description": "LLM을 활용하여 입력 텍스트를 요약하는 노드 함수 구현 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "StateGraph 기본 사용 예제",
+      "description": "StateGraph 객체 생성, 노드 추가, 엣지 연결, 컴파일하는 기본 패턴",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "invoke 실행 예시",
+      "description": "graph.invoke()를 사용하여 그래프를 동기적으로 실행하는 코드",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 Edge를 활용한 워크플로우 예시",
+      "description": "조건부 분기와 여러 노드, 엣지를 활용한 StateGraph 워크플로우 구성 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "stream 실행 예시",
+      "description": "graph.stream()을 사용하여 그래프 실행 과정을 실시간으로 출력하는 코드",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command 기반 노드 구현 예시",
+      "description": "Command 객체를 반환하여 상태 업데이트와 다음 노드 이동을 동시에 처리하는 노드 함수 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command 기반 워크플로우 구성 예시",
+      "description": "Command 반환 노드와 최소 엣지로 구성된 StateGraph 워크플로우 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "벡터 DB 준비 예시",
+      "description": "Chroma와 OpenAIEmbeddings를 사용하여 한국어/영어 벡터 DB를 준비하는 코드",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "언어별 RAG 라우팅 노드 구현 예시",
+      "description": "사용자의 언어를 감지하고, 한국어/영어 DB를 선택적으로 검색하는 노드 함수 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Tutorial",
+      "title": "조건부 라우팅 StateGraph 구현",
+      "description": "사용자의 언어를 감지하여 한국어/영어 DB를 선택적으로 검색하는 조건부 Edge 기반 StateGraph 실습",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph (Component)",
+      "to": "StateGraph (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Command (Component)",
+      "to": "Command (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "TypedDict (Component)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Chroma (Component)",
+      "to": "Graph (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용 예제 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "State 정의 예시 (CodeExample)",
+      "to": "TypedDict (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "요약 생성 노드 예시 (CodeExample)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 Edge를 활용한 워크플로우 예시 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "stream 실행 예시 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "Command 기반 노드 구현 예시 (CodeExample)",
+      "to": "Command (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "Command 기반 워크플로우 구성 예시 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "벡터 DB 준비 예시 (CodeExample)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "언어별 RAG 라우팅 노드 구현 예시 (CodeExample)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "조건부 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "Conditional Edge (Concept)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "Command 구문 기반 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "Command (Concept)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "조건부 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "조건부 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "조건부 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 구문 기반 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 구문 기반 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "Command (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 구문 기반 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 구문 기반 라우팅 StateGraph 구현 (Tutorial)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Node (Concept)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Graph (Concept)",
+      "to": "Node (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Conditional Edge (Concept)",
+      "to": "Node (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Command (Concept)",
+      "to": "Node (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Command (Concept)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "LangGraph Studio (Concept)",
+      "to": "StateGraph (Concept)"
+    }
+  ],
+  "statistics": {
+    "concepts": 9,
+    "components": 7,
+    "code_examples": 9,
+    "tutorials": 2,
+    "relationships": 28
+  }
+}

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "knowledge-system"
+version = "0.1.0"
+description = "LangGraph 기반 개인화 지식 관리 시스템"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=0.3.26",
+    "langchain-google-genai>=2.1.8",
+    "langchain-neo4j>=0.4.0",
+    "langchain-openai>=0.3.28",
+    "langgraph>=0.2.50",
+    "pydantic>=2.5.0",
+    "typing-extensions>=4.8.0",
+    "nbconvert>=7.16.6",
+    "python-dotenv>=1.1.1",
+    "langgraph-cli[inmem]>=0.3.4",
+    # Hybrid Search 의존성
+    "langchain-chroma>=0.1.0",
+    "langchain-text-splitters>=0.0.1",
+    "langchain-community>=0.0.1",
+    "rank-bm25>=0.2.2",
+    "kiwipiepy>=0.17.0",
+    "beautifulsoup4>=4.12.0",
+    "requests>=2.31.0",
+    "chromadb>=0.4.0",
+    # Web Search 의존성
+    "langchain-tavily>=0.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["knowledge_system*"]
+exclude = ["data*", "study_source*", "docs*", "scripts*"]
+
+[tool.setuptools.package-dir]
+"" = "."

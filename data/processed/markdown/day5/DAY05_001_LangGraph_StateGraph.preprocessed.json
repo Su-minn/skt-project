@@ -1,0 +1,235 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "StateGraph",
+      "description": "상태 기반의 그래프 구조를 사용하여 대화 흐름을 체계적으로 관리하는 핵심 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "State",
+      "description": "그래프에서 처리하는 데이터의 기본 구조로, 노드 간에 공유되고 유연하게 관리되는 정보 집합",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Node",
+      "description": "그래프의 기본 구성 요소로, 독립적인 작업 단위이며 상태를 입력받아 처리 후 업데이트된 상태를 반환",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Edge",
+      "description": "노드 간의 연결 경로를 정의하며, 대화 흐름과 데이터 이동을 결정하는 그래프의 핵심 요소",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Edge",
+      "description": "상태나 입력에 따라 노드 간 분기 경로를 동적으로 결정하는 엣지 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 지정할 수 있는 LangGraph의 제어 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Stream Execution",
+      "description": "그래프 실행의 중간 과정을 실시간으로 확인할 수 있는 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Concept",
+      "name": "Invoke Execution",
+      "description": "그래프의 전체 처리를 동기적으로 실행하여 최종 결과만 반환하는 기본 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "TypedDict",
+      "description": "그래프의 상태 구조를 명확하게 정의하기 위해 사용하는 타입 명세 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM을 활용하여 노드 내에서 텍스트 생성 및 평가를 수행하는 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 지정할 수 있는 LangGraph의 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "임베딩 기반 벡터 데이터베이스로, RAG 검색을 위한 문서 검색 기능을 제공",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "StateGraph 기본 사용 예제",
+      "description": "StateGraph 객체 생성, 노드 추가, 엣지 연결, 컴파일 및 실행의 기본 패턴",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 엣지와 상태 분기 예제",
+      "description": "요약 품질 평가에 따라 분기하는 조건부 엣지와 노드 라우팅 구현 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Stream 실행 예제",
+      "description": "그래프 실행의 중간 상태를 실시간으로 스트리밍하여 모니터링하는 코드 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command 객체를 활용한 상태 및 흐름 제어 예제",
+      "description": "Command 객체를 사용하여 상태 업데이트와 노드 이동을 동시에 처리하는 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "언어별 RAG 라우팅 StateGraph 예제",
+      "description": "사용자 언어 감지 후 한국어/영어 DB를 선택적으로 검색하는 StateGraph 코드 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Tutorial",
+      "title": "상태 기반 요약 챗봇 StateGraph 구현",
+      "description": "State, Node, Edge, 조건부 분기, Stream/Invoke 실행 등 StateGraph의 전체 흐름을 실습하는 튜토리얼",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Tutorial",
+      "title": "언어별 RAG 라우팅 구현",
+      "description": "사용자 언어를 감지하고 한국어/영어 DB를 선택적으로 검색하는 StateGraph 구현 실습",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph (Component)",
+      "to": "StateGraph (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용 예제 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용 예제 (CodeExample)",
+      "to": "TypedDict (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용 예제 (CodeExample)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지와 상태 분기 예제 (CodeExample)",
+      "to": "Conditional Edge (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지와 상태 분기 예제 (CodeExample)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "Stream 실행 예제 (CodeExample)",
+      "to": "Stream Execution (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "Command 객체를 활용한 상태 및 흐름 제어 예제 (CodeExample)",
+      "to": "Command (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "언어별 RAG 라우팅 StateGraph 예제 (CodeExample)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "언어별 RAG 라우팅 StateGraph 예제 (CodeExample)",
+      "to": "OpenAIEmbeddings (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "언어별 RAG 라우팅 StateGraph 예제 (CodeExample)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "상태 기반 요약 챗봇 StateGraph 구현 (Tutorial)",
+      "to": "StateGraph (Concept)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "Conditional Edge (Concept)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "OpenAIEmbeddings (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "Command 객체를 활용한 동적 라우팅 StateGraph 실습 (Tutorial)",
+      "to": "Command (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Node (Concept)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Edge (Concept)",
+      "to": "Node (Concept)"
+    }
+  ],
+  "statistics": {
+    "concepts": 7,
+    "components": 6,
+    "code_examples": 4,
+    "tutorials": 3,
+    "relationships": 19
+  }
+}

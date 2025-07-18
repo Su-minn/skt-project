@@ -1,0 +1,322 @@
+{
+  "source_file": "DAY06_006_LangGraph_CRAG",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "Corrective Retrieval-Augmented Generation",
+      "description": "검색된 문서의 관련성을 평가하고, 지식 정제 및 외부 검색을 통해 답변의 정확성을 높이는 RAG 변형 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Document Relevance Grading",
+      "description": "검색된 문서가 질문과 얼마나 관련이 있는지 평가하는 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Knowledge Refinement",
+      "description": "문서에서 질문에 관련된 핵심 정보를 추출하고 평가하여 정제된 지식으로 만드는 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Question Rewriting",
+      "description": "검색 효율을 높이기 위해 사용자의 질문을 벡터 검색에 최적화된 형태로 변환하는 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Routing",
+      "description": "그래프 내에서 상태에 따라 다음 노드(함수)로 분기하는 워크플로우 제어 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "그래프에서 질문, 검색 결과, 정제된 지식 등 상태 정보를 저장하고 전달하는 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    }
+  ],
+  "components": [
+    {
+      "type": "Component",
+      "name": "Graph Structure",
+      "description": "여러 노드와 엣지로 구성된 워크플로우를 정의하는 추상적 구조 개념",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "GradeDocuments",
+      "description": "검색된 문서의 관련성을 평가하기 위한 Pydantic 데이터 모델 클래스",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "RefinedKnowledge",
+      "description": "문서에서 추출된 정제된 지식과 관련성 평가 결과를 저장하는 Pydantic 데이터 모델 클래스",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI의 챗 기반 LLM을 호출하는 LangChain 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LLM 프롬프트를 템플릿 형태로 구성하는 LangChain 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "StrOutputParser",
+      "description": "LLM의 출력을 문자열로 파싱하는 LangChain 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "벡터 임베딩 기반의 문서 검색을 위한 벡터 저장소 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "텍스트 임베딩 생성을 위한 OpenAI 임베딩 모델 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "TavilySearchResults",
+      "description": "외부 웹 검색 결과를 반환하는 LangChain 커뮤니티 도구 컴포넌트",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "Component",
+      "name": "GraphState",
+      "description": "LangGraph에서 CRAG 워크플로우의 상태를 저장하는 TypedDict 기반 클래스",
+      "source": "DAY06_006_LangGraph_CRAG"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "벡터저장소 검색기 기본 설정",
+      "description": "Chroma와 OpenAIEmbeddings를 이용해 벡터저장소를 생성하고 검색기를 만드는 기본 예제",
+      "code": "from langchain_chroma import Chroma\nfrom langchain_openai import OpenAIEmbeddings\nembeddings_model = OpenAIEmbeddings(model=\"text-embedding-3-small\")\n# Chroma 인덱스 로드\nvector_db = Chroma(\nembedding_function=embeddings_model,\ncollection_name=\"restaurant_menu\",\npersist_directory=\"./chroma_db\",\n)\n# 검색도구 생성\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "웹 검색 도구 생성",
+      "description": "TavilySearchResults를 이용해 웹 검색 도구를 생성하는 간단한 예제",
+      "code": "from langchain_community.tools.tavily_search import TavilySearchResults\nsearch_tool = TavilySearchResults(max_results=2)\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Retrieval Grader 기본 사용법",
+      "description": "GradeDocuments 모델과 ChatOpenAI를 이용해 검색 문서의 관련성을 평가하는 기본 예제",
+      "code": "from pydantic import BaseModel, Field\nfrom typing import Literal\nfrom langchain_core.prompts import ChatPromptTemplate\nfrom langchain_openai import ChatOpenAI\n\"\"\"Three-class score for relevance check on retrieved documents.\"\"\"\n)\nllm = ChatOpenAI(model=\"gpt-4.1-mini\", temperature=0)\nstructured_llm_grader = llm.with_structured_output(GradeDocuments)\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Answer Generator 함수 예제",
+      "description": "ChatPromptTemplate과 ChatOpenAI를 이용해 검색 문서 기반 답변을 생성하는 함수 예제",
+      "code": "from langchain_core.output_parsers import StrOutputParser\ntemplate = \"\"\"\nAnswer the question based solely on the given context. Do not use any external information or knowledge.\n1. Carefully verify information related to the question within the given context.\n2. Use only information directly relevant to the question in your answer.\n3. Do not make assumptions about information not explicitly stated in the context.\n4. Avoid unnecessary information and keep your answer concise and clear.\n5. If an answer cannot be found in the context, respond with \"주어진 정보만으로는 답할 수 없습니다.\"\n6. When appropriate, use direct quotes from the context, using quotation marks.\n{context}\n{question}\n\"\"\"\nprompt = ChatPromptTemplate.from_template(template)\nllm = ChatOpenAI(model='gpt-4.1-mini', temperature=0)\nreturn \"\\n\\n\".join([d.page_content for d in docs])\nrag_chain = prompt | llm | StrOutputParser()\nreturn generation\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Question Re-writer 함수 예제",
+      "description": "ChatOpenAI와 ChatPromptTemplate을 이용해 질문을 검색 최적화 형태로 재작성하는 함수 예제",
+      "code": "def rewrite_question(question: str) -> str:\n\"\"\"\n주어진 질문을 벡터 저장소 검색에 최적화된 형태로 다시 작성합니다.\n\"\"\"\n# LLM 모델 초기화\nllm = ChatOpenAI(model=\"gpt-4.1-mini\", temperature=0)\n# 시스템 프롬프트 정의\nsystem_prompt = \"\"\"\nYou are an expert question re-writer. Your task is to convert input questions into optimized versions\nfor vectorstore retrieval. Analyze the input carefully and focus on capturing the underlying semantic\nintent and meaning. Your goal is to create a question that will lead to more effective and relevant\ndocument retrieval.\n1. Identify and emphasize key concepts and main subjects in the question.\n2. Expand abbreviations and clarify ambiguous terms.\n3. Include synonyms or related terms that might appear in relevant documents.\n4. Maintain the original intent and scope of the question.\n5. Break down complex questions into simple, focused sub-questions.\nRemember, the goal is to improve retrieval effectiveness, not to change the fundamental meaning of the question.\n\"\"\"\n# 질문 다시 쓰기 프롬프트 템플릿 생성\nre_write_prompt = ChatPromptTemplate.from_messages(\n(\"system\", system_prompt),\n(\n\"human\",\n\"[Initial question]\\n{question}\\n\\n[Improved question]\\n\",\n),\n]\n)\n# 질문 다시 쓰기 체인 구성\nquestion_rewriter = re_write_prompt | llm | StrOutputParser()\n# 질문 다시 쓰기 실행\nreturn rewritten_question\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Knowledge Refiner 클래스 및 파이프라인 예제",
+      "description": "RefinedKnowledge 모델과 ChatOpenAI를 이용해 문서에서 정제된 지식을 추출하는 예제",
+      "code": "# 지식 정제를 위한 클래스\n\"\"\"\nRepresents a refined piece of knowledge extracted from a document.\n\"\"\"\ndescription=\"Documents are relevant to the question, 'yes' or 'no'\"\n)\n# LLM 모델 초기화 및 구조화된 출력 설정\nllm = ChatOpenAI(model=\"gpt-4.1\", temperature=0)\nstructured_llm_grader = llm.with_structured_output(RefinedKnowledge)\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "GraphState 클래스 정의",
+      "description": "CRAG 워크플로우의 상태를 저장하는 TypedDict 기반 GraphState 클래스 정의 예제",
+      "code": "from typing import TypedDict, Union, List, Dict, Tuple, Any\nfrom langchain_core.documents import Document\n\"\"\"\n그래프의 상태를 나타내는 클래스\n\"\"\"\n```\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "StateGraph 기본 사용법",
+      "description": "StateGraph를 생성하고 노드 및 엣지를 추가하여 그래프를 정의하는 기본 예제",
+      "code": "from langgraph.graph import StateGraph, START, END\nfrom IPython.display import Image, display\n# 워크플로우 그래프 초기화\nbuilder = StateGraph(GraphState)\n# 노드 정의\nbuilder.add_node(\"retrieve\", retrieve)                  # 문서 검색\nbuilder.add_node(\"grade_documents\", grade_documents)    # 문서 평가\nbuilder.add_node(\"refine_knowledge\", refine_knowledge)  # 지식 정제\nbuilder.add_node(\"web_search\", web_search)              # 웹 검색\nbuilder.add_node(\"generate\", generate)                  # 답변 생성\nbuilder.add_node(\"transform_query\", transform_query)    # 질문 개선\n# 경로 정의\nbuilder.add_edge(START, \"retrieve\")\nbuilder.add_edge(\"retrieve\", \"grade_documents\")\nbuilder.add_edge(\"grade_documents\", \"refine_knowledge\")\nbuilder.add_conditional_edges(\n\"refine_knowledge\",\ndecide_to_generate,\n{\n},\n)\n# 추가 경로\nbuilder.add_edge(\"transform_query\", \"web_search\")\nbuilder.add_edge(\"web_search\", \"grade_documents\")\nbuilder.add_edge(\"generate\", END)\n# 그래프 컴파일\ngraph = builder.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))\n```\n---\n```",
+      "source": "DAY06_006_LangGraph_CRAG"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "GradeDocuments",
+      "to": "Document Relevance Grading"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "RefinedKnowledge",
+      "to": "Knowledge Refinement"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "GraphState",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatPromptTemplate",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Chroma",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "TavilySearchResults",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatOpenAI",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StrOutputParser",
+      "to": "State Management"
+    },
+    {
+      "type": "USES",
+      "from": "벡터저장소 검색기 기본 설정",
+      "to": "Chroma"
+    },
+    {
+      "type": "USES",
+      "from": "벡터저장소 검색기 기본 설정",
+      "to": "OpenAIEmbeddings"
+    },
+    {
+      "type": "USES",
+      "from": "웹 검색 도구 생성",
+      "to": "TavilySearchResults"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 기본 사용법",
+      "to": "GradeDocuments"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 기본 사용법",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 기본 사용법",
+      "to": "ChatPromptTemplate"
+    },
+    {
+      "type": "USES",
+      "from": "Answer Generator 함수 예제",
+      "to": "ChatPromptTemplate"
+    },
+    {
+      "type": "USES",
+      "from": "Answer Generator 함수 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "Answer Generator 함수 예제",
+      "to": "StrOutputParser"
+    },
+    {
+      "type": "USES",
+      "from": "Question Re-writer 함수 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "Question Re-writer 함수 예제",
+      "to": "ChatPromptTemplate"
+    },
+    {
+      "type": "USES",
+      "from": "Question Re-writer 함수 예제",
+      "to": "StrOutputParser"
+    },
+    {
+      "type": "USES",
+      "from": "Knowledge Refiner 클래스 및 파이프라인 예제",
+      "to": "RefinedKnowledge"
+    },
+    {
+      "type": "USES",
+      "from": "Knowledge Refiner 클래스 및 파이프라인 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "GraphState 클래스 정의",
+      "to": "GraphState"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용법",
+      "to": "GraphState"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Corrective Retrieval-Augmented Generation",
+      "to": "Document Relevance Grading"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Corrective Retrieval-Augmented Generation",
+      "to": "Knowledge Refinement"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Corrective Retrieval-Augmented Generation",
+      "to": "Question Rewriting"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Corrective Retrieval-Augmented Generation",
+      "to": "State Management"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "State Management",
+      "to": "Graph Structure"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Conditional Routing",
+      "to": "State Management"
+    }
+  ],
+  "statistics": {
+    "concepts": 6,
+    "components": 10,
+    "code_examples": 7,
+    "tutorials": 1,
+    "relationships": 49
+  }
+}

@@ -1,0 +1,361 @@
+{
+    "source_file": "DAY05_007_LangGraph_MessageGraph",
+    "concepts": [{
+            "type": "Concept",
+            "name": "State Management",
+            "description": "LangGraph에서 각 노드의 출력과 전체 그래프 상태를 통합하고 관리하는 추상적 개념. Reducer, Custom Reducer, 메시지 누적 등 다양한 상태 관리 전략을 포함.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Reducer",
+            "description": "LangGraph에서 각 노드의 반환값을 전체 상태에 통합하는 함수 또는 메커니즘. 기본 덮어쓰기, 누적, 커스텀 병합 등 다양한 방식이 있음.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Message Management",
+            "description": "LangGraph에서 HumanMessage, AIMessage 등 다양한 메시지 객체를 리스트로 관리하고, reducer를 통해 메시지 목록을 갱신하는 개념.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Parallel Execution",
+            "description": "LangGraph에서 여러 노드를 동시에 실행하여 처리 속도를 높이고, Fan-out/Fan-in, 조건부 분기, 다단계 분기, Map-Reduce 패턴 등 다양한 병렬 처리 구조를 구현하는 개념.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Conditional Routing",
+            "description": "LangGraph에서 상태 값에 따라 실행할 노드(경로)를 동적으로 결정하는 분기 처리 개념. add_conditional_edges, Send 객체 등을 활용.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Map-Reduce Pattern",
+            "description": "LangGraph에서 입력 데이터를 여러 하위 작업으로 분할(Map)하고, 결과를 다시 통합(Reduce)하는 병렬 처리 패턴.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        }
+    ],
+    "components": [{
+            "type": "Component",
+            "name": "Multi-Agent Validation",
+            "description": "여러 전문가 에이전트가 병렬로 결과를 평가하고, 그 결과를 통합하여 최종 평가를 생성하는 시스템 구조.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "StateGraph",
+            "description": "LangGraph에서 상태 기반 워크플로우를 정의하고, 노드 및 엣지 추가, 컴파일, 실행, 시각화 등을 지원하는 핵심 클래스.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "START",
+            "description": "LangGraph에서 그래프의 시작점을 나타내는 상수.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "END",
+            "description": "LangGraph에서 그래프의 종료점을 나타내는 상수.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "TypedDict",
+            "description": "Python의 타입 힌팅을 위한 딕셔너리 타입 정의 클래스. LangGraph 상태 정의에 자주 사용됨.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "Annotated",
+            "description": "Python 타입 힌팅에서 추가 메타데이터(예: reducer 함수)를 부여하는 타입 어노테이션.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "add",
+            "description": "operator.add 함수. 리스트 등 시퀀스 타입의 상태 필드에 값을 누적하는 reducer로 사용됨.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "add_messages",
+            "description": "LangGraph에서 메시지 리스트를 ID 기반으로 병합/추가하는 고급 reducer 함수.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "MessagesState",
+            "description": "LangGraph에서 메시지 관리에 특화된 상태 타입. messages 필드와 add_messages reducer를 기본 제공.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "Send",
+            "description": "LangGraph에서 조건부 분기 시, 특정 노드에 개별 상태를 전달하는 객체. Map-Reduce 패턴 등에서 사용.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "ChatOpenAI",
+            "description": "OpenAI 기반 챗봇 모델을 래핑하는 LangChain 컴포넌트. 메시지 리스트를 입력받아 응답 생성에 사용.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Component",
+            "name": "Image",
+            "description": "IPython.display의 이미지 시각화 컴포넌트. 그래프 구조 시각화에 사용.",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        }
+    ],
+    "code_examples": [{
+            "type": "CodeExample",
+            "title": "기본 StateGraph 생성",
+            "description": "StateGraph 인스턴스를 생성하고 노드 및 엣지를 추가하여 간단한 상태 그래프를 빌드하는 기본 예제.",
+            "code": "from typing import TypedDict, List\nfrom langgraph.graph import StateGraph, START, END\nfrom IPython.display import Image, display\n# 상태 정의\nprint(\"---Node 1 (query update)---\")\nquery = state[\"query\"]\nprint(\"---Node 2 (add documents)---\")\nprint(\"---Node 3 (add more documents)---\")\n# 그래프 빌드\nbuilder = StateGraph(DocumentState)\nbuilder.add_node(\"node_1\", node_1)\nbuilder.add_node(\"node_2\", node_2)\nbuilder.add_node(\"node_3\", node_3)\n# 논리 구성\nbuilder.add_edge(START, \"node_1\")\nbuilder.add_edge(\"node_1\", \"node_2\")\nbuilder.add_edge(\"node_2\", \"node_3\")\nbuilder.add_edge(\"node_3\", END)\n# 그래프 실행\ngraph = builder.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "기본 Reducer 동작 예제",
+            "description": "Reducer를 별도로 지정하지 않은 상태에서 StateGraph를 실행하고, 상태가 어떻게 덮어써지는지 확인하는 예제.",
+            "code": "# 초기 상태\n# 그래프 실행\nfinal_state = graph.invoke(initial_state)\n# 최종 상태 출력\nprint(\"-\"*100)",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "Annotated를 활용한 누적 Reducer 예제",
+            "description": "Annotated와 operator.add를 사용하여 리스트 데이터를 누적 관리하는 사용자 정의 Reducer 예제.",
+            "code": "from operator import add\nfrom typing import Annotated, TypedDict\nprint(\"---Node 1 (query update)---\")\nquery = state[\"query\"]\nprint(\"---Node 2 (add documents)---\")\nprint(\"---Node 3 (add more documents)---\")\n# 그래프 빌드\nbuilder = StateGraph(ReducerState)\nbuilder.add_node(\"node_1\", node_1)\nbuilder.add_node(\"node_2\", node_2)\nbuilder.add_node(\"node_3\", node_3)\n# 논리 구성\nbuilder.add_edge(START, \"node_1\")\nbuilder.add_edge(\"node_1\", \"node_2\")\nbuilder.add_edge(\"node_2\", \"node_3\")\nbuilder.add_edge(\"node_3\", END)\n# 그래프 실행\ngraph = builder.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "Custom Reducer로 중복 제거 예제",
+            "description": "Custom Reducer 함수를 사용하여 리스트 병합 시 중복을 제거하는 예제.",
+            "code": "from typing import TypedDict, List, Annotated\n\"\"\"Combine two lists of documents, removing duplicates.\"\"\"\nleft = []\nright = []\nreturn sorted(list(set(left + right)), reverse=True)\n# 상태 정의 (documents 필드 포함)",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "add_messages Reducer 사용 예제",
+            "description": "add_messages reducer를 사용하여 메시지 리스트를 ID 기반으로 병합/추가하는 예제.",
+            "code": "from typing import Annotated\nfrom langchain_core.messages import AnyMessage\nfrom langgraph.graph.message import add_messages\n# add_messages 사용 상태 정의\n# LLM 인스턴스 생성\nllm = ChatOpenAI(model=\"gpt-4.1-mini\")\n# chatbot 노드 함수 정의\n# LLM을 사용하여 챗봇 메시지 생성\n# Workflow Graph\nbuilder = StateGraph(GraphState)\nbuilder.add_node(\"chatbot\", chatbot)\nbuilder.add_edge(START, \"chatbot\")\nbuilder.add_edge(\"chatbot\", END)\n# 그래프 컴파일\ngraph = builder.compile()\n# 초기 상태\n# 그래프 실행\npprint(event['messages'])\nprint(\"-\"*100)",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        }
+    ],
+    "tutorials": [{
+            "type": "Tutorial",
+            "title": "MessagesState 상속 및 커스텀 필드 추가 예제",
+            "description": "MessagesState를 상속하여 emotion 등 커스텀 필드를 추가하고, 감정 분석 및 챗봇 응답을 처리하는 예제.",
+            "code": "from typing import Optional\nfrom langgraph.graph import StateGraph, START, END, MessagesState\nfrom langchain_openai import ChatOpenAI\n# MessagesState를 상속하여 커스텀 필드 추가\n# 사용자의 감정 상태를 추적하는 필드 추가\n# LLM 인스턴스 생성\nllm = ChatOpenAI(model=\"gpt-4.1-mini\")\n# 감정 분석을 위한 프롬프트 템플릿\nEMOTION_PROMPT = \"\"\"\n사용자의 메시지를 분석하여 감정 상태를 파악해주세요.\n감정 상태만 한 단어로 답변해주세요.\n\"\"\"\n# 감정 분석 노드\n# 가장 최근 사용자 메시지 가져오기\nlast_message = state[\"messages\"][-1].content\n# 감정 분석 실행\nemotion_analysis = llm.invoke(EMOTION_PROMPT.format(message=last_message))\n# 상태 업데이트\nreturn {\n}\n# 챗봇 응답 노드\n# 현재 감정 상태를 고려한 시스템 메시지 생성\nsystem_message = f\"\"\"\n사용자의 현재 감정 상태는 {state['emotion']}입니다.\n이를 고려하여 공감적이고 적절한 응답을 해주세요.\n\"\"\"\n# 기존 메시지에 시스템 메시지 추가\n# LLM 응답 생성\nresponse = llm.invoke(messages)\n# Workflow Graph 구성\nbuilder = StateGraph(GraphState)\n# 노드 추가\nbuilder.add_node(\"analyze_emotion\", analyze_emotion)\nbuilder.add_node(\"chatbot\", chatbot)\n# 엣지 추가\nbuilder.add_edge(START, \"analyze_emotion\")\nbuilder.add_edge(\"analyze_emotion\", \"chatbot\")\nbuilder.add_edge(\"chatbot\", END)\n# 그래프 컴파일\ngraph = builder.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))\n```\n---\n```",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Tutorial",
+            "title": "병렬 분기 및 Fan-in/Fan-out 워크플로우 구현",
+            "description": "여러 검색 엔진에서 정보를 병렬로 수집하고, 결과를 결합하는 Fan-out/Fan-in 구조의 병렬 처리 워크플로우 전체 구현 예제.",
+            "code": "# 여러 검색 엔진에서 정보 가져오기\nimport operator\nfrom typing import Annotated, Any, TypedDict\nfrom langgraph.graph import StateGraph, START, END\n# 각 검색 엔진에 대한 노드 정의\nprint(\"Searching with Engine A...\")\nprint(\"Searching with Engine B...\")\nprint(\"Combining search results...\")\n# 그래프 구성\nsearch_builder = StateGraph(SearchState)\nsearch_builder.add_node(\"engine_a\", search_engine_a)\nsearch_builder.add_node(\"engine_b\", search_engine_b)\nsearch_builder.add_node(\"combine\", combine_results)\nsearch_builder.add_edge(START, \"engine_a\")\nsearch_builder.add_edge(START, \"engine_b\")\n# search_builder.add_edge(\"engine_a\", \"combine\")\n# search_builder.add_edge(\"engine_b\", \"combine\")\nsearch_builder.add_edge([\"engine_a\", \"engine_b\"], \"combine\") # 병렬 실행 후 결과 결합\nsearch_builder.add_edge(\"combine\", END)\n# 그래프 컴파일\nsearch_graph = search_builder.compile()\n# 그래프 시각화\ndisplay(Image(search_graph.get_graph().draw_mermaid_png()))\n# 그래프 실행",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Tutorial",
+            "title": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "description": "조건부 엣지와 병렬 실행을 활용하여 사용자 의도에 따라 다양한 서비스(날씨, 뉴스, 도움말 등)를 병렬로 실행하고, 결과를 통합하는 전체 워크플로우 구현 예제.",
+            "code": "import operator\nfrom typing import Annotated, Sequence, TypedDict\nfrom langgraph.graph import StateGraph, START, END\n# 서비스 노드 정의\nprint(f'Adding \"greet\" to {state[\"messages\"]}')\nprint(f'Adding \"weather\" to {state[\"messages\"]}')\nprint(f'Adding \"news\" to {state[\"messages\"]}')\nprint(f'Adding \"help\" to {state[\"messages\"]}')\nprint(f'Adding \"process\" to {state[\"messages\"]}')\n# 날씨와 뉴스 서비스를 병렬 실행\nreturn [\"weather_service\", \"news_service\"]\n# 기본적으로 인사와 뉴스 서비스를 병렬 실행\nreturn [\"help_service\", \"news_service\"]\n# 그래프 구성\nchat_builder = StateGraph(ChatState)\n# 노드 추가\nchat_builder.add_node(\"greet\", greet_service)\nchat_builder.add_node(\"weather_service\", weather_service)\nchat_builder.add_node(\"news_service\", news_service)\nchat_builder.add_node(\"help_service\", help_service)\nchat_builder.add_node(\"process\", process_response)\n# 엣지 추가\nchat_builder.add_edge(START, \"greet\")\n# 중간 노드 정의\nintermediates = [\"weather_service\", \"news_service\", \"help_service\"]\n# greet 노드에서 조건부 엣지 추가\nchat_builder.add_conditional_edges(\n\"greet\",\nroute_services,\nintermediates,\n)\n# 중간 노드들을 process 노드에 연결\nchat_builder.add_edge(node, \"process\")\nchat_builder.add_edge(\"process\", END)\n# 그래프 컴파일\nchat_graph = chat_builder.compile()\n# 그래프 시각화\ndisplay(Image(chat_graph.get_graph().draw_mermaid_png()))\n# \"weather_news\" 의도를 가지고 실행\n# 다른 의도를 가지고 실행",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        },
+        {
+            "type": "Tutorial",
+            "title": "Map-Reduce 패턴을 활용한 동적 분기 및 개별 상태 전달",
+            "description": "Send 객체를 활용하여 입력 데이터에 따라 동적으로 노드와 상태를 분기시키고, 각 분기에서 개별 상태를 처리하는 Map-Reduce 패턴 전체 구현 예제.",
+            "code": "import operator\nfrom typing import Annotated, List, TypedDict\nfrom langgraph.graph import StateGraph, START, END\nfrom langgraph.types import Send\nfrom IPython.display import Image, display\n# 글로벌 상태 정의\n# 로컬 상태 정의\n# 노드 정의\n\"\"\"URL 목록을 정의합니다. (글로벌 상태 사용)\"\"\"\nprint(\"Using provided URLs...\")\n\"\"\"각 웹사이트를 스크래핑합니다. (로컬 상태 사용)\"\"\"\nprint(f\"Scraping {state['url']}...\")  # 로컬 상태(url) 사용\n# 실제 스크래핑 로직 (여기서는 시뮬레이션)\n\"\"\"스크래핑 노드로 라우팅합니다. (글로벌 상태 사용, 로컬 상태 생성)\"\"\"\n# 그래프 구성\ngraph = StateGraph(WebScrapingState)\ngraph.add_node(\"define_urls\", define_urls)\ngraph.add_node(\"scrape_website\", scrape_website)\ngraph.set_entry_point(\"define_urls\")\ngraph.add_conditional_edges(\n\"define_urls\",\nroute_to_scraping,\n)\ngraph.add_edge(\"scrape_website\", END)\n# 그래프 컴파일\ncompiled_graph = graph.compile()\n# 그래프 시각화\ndisplay(Image(compiled_graph.get_graph().draw_mermaid_png()))\n# 그래프 실행 (외부에서 URL 목록 입력)\nresult = compiled_graph.invoke(initial_state)",
+            "source": "DAY05_007_LangGraph_MessageGraph"
+        }
+    ],
+    "relationships": [{
+            "type": "IMPLEMENTS",
+            "from": "StateGraph",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "add",
+            "to": "Reducer"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "add_messages",
+            "to": "Reducer"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "MessagesState",
+            "to": "Message Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "Send",
+            "to": "Map-Reduce Pattern"
+        },
+        {
+            "type": "USES",
+            "from": "기본 StateGraph 생성",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "기본 StateGraph 생성",
+            "to": "START"
+        },
+        {
+            "type": "USES",
+            "from": "기본 StateGraph 생성",
+            "to": "END"
+        },
+        {
+            "type": "USES",
+            "from": "기본 StateGraph 생성",
+            "to": "TypedDict"
+        },
+        {
+            "type": "USES",
+            "from": "기본 Reducer 동작 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "Annotated를 활용한 누적 Reducer 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "Annotated를 활용한 누적 Reducer 예제",
+            "to": "add"
+        },
+        {
+            "type": "USES",
+            "from": "Annotated를 활용한 누적 Reducer 예제",
+            "to": "Annotated"
+        },
+        {
+            "type": "USES",
+            "from": "Custom Reducer로 중복 제거 예제",
+            "to": "Annotated"
+        },
+        {
+            "type": "USES",
+            "from": "add_messages Reducer 사용 예제",
+            "to": "add_messages"
+        },
+        {
+            "type": "USES",
+            "from": "add_messages Reducer 사용 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "MessagesState 상속 및 커스텀 필드 추가 예제",
+            "to": "MessagesState"
+        },
+        {
+            "type": "USES",
+            "from": "MessagesState 상속 및 커스텀 필드 추가 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "MessagesState 상속 및 커스텀 필드 추가 예제",
+            "to": "ChatOpenAI"
+        },
+        {
+            "type": "APPLIES",
+            "from": "병렬 분기 및 Fan-in/Fan-out 워크플로우 구현",
+            "to": "Parallel Execution"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "병렬 분기 및 Fan-in/Fan-out 워크플로우 구현",
+            "to": "StateGraph"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "병렬 분기 및 Fan-in/Fan-out 워크플로우 구현",
+            "to": "START"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "병렬 분기 및 Fan-in/Fan-out 워크플로우 구현",
+            "to": "END"
+        },
+        {
+            "type": "APPLIES",
+            "from": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "to": "Conditional Routing"
+        },
+        {
+            "type": "APPLIES",
+            "from": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "to": "Parallel Execution"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "to": "StateGraph"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "to": "START"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 병렬 서비스 워크플로우 구현",
+            "to": "END"
+        },
+        {
+            "type": "APPLIES",
+            "from": "Map-Reduce 패턴을 활용한 동적 분기 및 개별 상태 전달",
+            "to": "Map-Reduce Pattern"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Map-Reduce 패턴을 활용한 동적 분기 및 개별 상태 전달",
+            "to": "StateGraph"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Map-Reduce 패턴을 활용한 동적 분기 및 개별 상태 전달",
+            "to": "Send"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Parallel Execution",
+            "to": "State Management"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Conditional Routing",
+            "to": "State Management"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Map-Reduce Pattern",
+            "to": "Parallel Execution"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Multi-Agent Validation",
+            "to": "Map-Reduce Pattern"
+        }
+    ],
+    "statistics": {
+        "concepts": 6,
+        "components": 12,
+        "code_examples": 5,
+        "tutorials": 4,
+        "relationships": 39
+    }
+}

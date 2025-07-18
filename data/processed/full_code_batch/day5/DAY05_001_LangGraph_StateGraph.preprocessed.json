@@ -1,0 +1,195 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "그래프에서 데이터를 관리하고 노드 간 공유하는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Graph Structure",
+      "description": "노드와 엣지로 구성된 데이터 흐름 및 실행 구조를 정의하는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Routing",
+      "description": "상태나 입력에 따라 그래프의 실행 경로를 동적으로 분기하는 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Component",
+      "name": "Command Pattern",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 처리하는 그래프 제어 패턴",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "그래프 내에서 상태 업데이트와 다음 노드 이동을 동시에 지정하는 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM을 사용하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "TypedDict",
+      "description": "Python에서 타입이 지정된 딕셔너리 구조를 정의하는 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "LangChain에서 벡터 DB로 사용되는 임베딩 기반 검색 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "OpenAI 임베딩 모델을 사용하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StrOutputParser",
+      "description": "LangChain에서 LLM 출력을 문자열로 파싱하는 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LangChain에서 프롬프트 템플릿을 생성하는 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "기본 StateGraph 생성",
+      "description": "StateGraph 인스턴스를 생성하고 노드와 엣지를 추가하여 간단한 워크플로우를 구성하는 예제",
+      "code": "\"from langgraph.graph import StateGraph, START, END\nfrom IPython.display import Image, display\n# StateGraph 객체 생성 (Workflow)\nworkflow = StateGraph(State)\n# 노드 추가\nworkflow.add_node(\\\"summarize\\\", generate_summary)\nworkflow.add_edge(START, \\\"summarize\\\")\nworkflow.add_edge(\\\"summarize\\\", END)\n# 그래프 컴파일\ngraph = workflow.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))\"",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "상태 정의와 TypedDict 사용",
+      "description": "그래프에서 사용할 상태 구조를 TypedDict로 정의하는 예제",
+      "code": "\"from typing import TypedDict\n# 상태 정의",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 엣지와 품질 평가 노드",
+      "description": "요약 품질을 평가하여 조건부로 분기하는 노드와 엣지 추가 예제",
+      "code": "\"from typing import Literal\n# 요약 품질 체크 노드 (조건부 엣지와 함께 사용)\n\\\"\\\"\\\"요약의 품질을 체크하고 개선이 필요한지 판단하는 노드\\\"\\\"\\\"\nprompt = f\\\"\\\"\\\"다음 요약의 품질을 평가해주세요.\n원문을 잘 요약했는지 평가해주세요. 요약이 명확하고 핵심을 잘 전달하면 'good'을,\n개선이 필요하면 'needs_improvement'를 응답해주세요.\n\\\"\\\"\\\"\nresponse = llm.invoke(prompt).content.lower().strip()\nprint(\\\"---- Good Summary ----\\\")\nreturn \\\"good\\\"\nprint(\\\"---- Needs Improvement ----\\\")\nreturn \\\"needs_improvement\\\"\n# 요약 개선 노드\n\\\"\\\"\\\"요약을 개선하고 다듬는 노드\\\"\\\"\\\"\n\\\"\\\"\\\"\nresponse = llm.invoke(prompt)\n# 요약 완료 노드\n\\\"\\\"\\\"현재 요약을 최종 요약으로 설정하는 노드\\\"\\\"\\\"",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "StateGraph에서 Command 패턴 적용 예제",
+      "description": "Command 객체를 사용하여 상태 업데이트와 노드 이동을 동시에 처리하는 예제",
+      "code": "\"from typing import TypedDict, Literal\nfrom langgraph.graph import StateGraph, START, END\nfrom langgraph.types import Command\nfrom langchain_openai import ChatOpenAI\n# 상태 정의\n# LLM 인스턴스 생성\nsummary_llm = ChatOpenAI(model=\\\"gpt-4.1-mini\\\")\neval_llm = ChatOpenAI(model=\\\"gpt-4.1\\\")\n# 요약 생성 노드\n\\\"\\\"\\\"원본 텍스트를 요약하고 품질을 평가하는 노드\\\"\\\"\\\"\n# 요약 생성\n{state['original_text']}\n\\\"\\\"\\\"\nsummary = summary_llm.invoke(summary_prompt).content\n# 품질 평가\neval_prompt = f\\\"\\\"\\\"다음 요약의 품질을 평가해주세요.\n요약이 명확하고 핵심을 잘 전달하면 'good'을,\n개선이 필요하면 'needs_improvement'를 응답해주세요.\n\\\"\\\"\\\"\nquality = eval_llm.invoke(eval_prompt).content.lower().strip()\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=\\\"finalize_summary\\\" if \\\"good\\\" in quality else \\\"improve_summary\\\",\n)\n# 요약 개선 노드\n\\\"\\\"\\\"요약을 개선하고 다듬는 노드\\\"\\\"\\\"\n{state['summary']}\n\\\"\\\"\\\"\nimproved_summary = llm.invoke(prompt).content\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=END,\n)\n# 최종 요약 설정 노드\n\\\"\\\"\\\"현재 요약을 최종 요약으로 설정하는 노드\\\"\\\"\\\"\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=END,\n)\"\n```\n```",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Graph Structure"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Command",
+      "to": "Command Pattern"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Chroma",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "TypedDict",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatOpenAI",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "OpenAIEmbeddings",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StrOutputParser",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatPromptTemplate",
+      "to": "State Management"
+    },
+    {
+      "type": "USES",
+      "from": "기본 StateGraph 생성",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "상태 정의와 TypedDict 사용",
+      "to": "TypedDict"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지와 품질 평가 노드",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지와 품질 평가 노드",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph에서 Command 패턴 적용 예제",
+      "to": "Command"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph에서 Command 패턴 적용 예제",
+      "to": "StateGraph"
+    }
+  ],
+  "statistics": {
+    "concepts": 3,
+    "components": 9,
+    "code_examples": 3,
+    "tutorials": 1,
+    "relationships": 27
+  }
+}

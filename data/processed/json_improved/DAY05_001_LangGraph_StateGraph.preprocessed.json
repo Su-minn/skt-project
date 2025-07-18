@@ -1,0 +1,312 @@
+{
+    "source_file": "DAY05_001_LangGraph_StateGraph",
+    "concepts": [{
+            "type": "Concept",
+            "name": "State Management",
+            "description": "그래프에서 데이터를 관리하고 노드 간 공유하는 개념",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Graph Structure",
+            "description": "노드와 엣지로 구성된 데이터 흐름 및 처리 구조",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Conditional Routing",
+            "description": "상태나 조건에 따라 그래프 내에서 경로를 동적으로 분기하는 개념",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Concept",
+            "name": "Command Pattern",
+            "description": "상태 업데이트와 제어 흐름을 동시에 처리하는 명령 객체 패턴",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        }
+    ],
+    "components": [{
+            "type": "Component",
+            "name": "Multi-Agent Systems",
+            "description": "여러 에이전트가 협력하여 복합적인 워크플로우를 수행하는 시스템 구조",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "StateGraph",
+            "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "Command",
+            "description": "상태 업데이트와 다음 노드 이동을 동시에 지정하는 LangGraph의 명령 객체",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "TypedDict",
+            "description": "파이썬에서 타입이 지정된 딕셔너리 구조를 정의하는 클래스",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "ChatOpenAI",
+            "description": "OpenAI 기반 챗 모델을 사용하는 LangChain 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "ChatGoogleGenerativeAI",
+            "description": "Google Generative AI 기반 챗 모델을 사용하는 LangChain 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "OpenAIEmbeddings",
+            "description": "OpenAI의 텍스트 임베딩 모델을 사용하는 LangChain 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "Chroma",
+            "description": "벡터 데이터베이스를 관리하는 LangChain 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "StrOutputParser",
+            "description": "LangChain에서 문자열 출력을 파싱하는 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Component",
+            "name": "ChatPromptTemplate",
+            "description": "LangChain에서 프롬프트 템플릿을 생성하는 컴포넌트",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        }
+    ],
+    "code_examples": [{
+            "type": "CodeExample",
+            "title": "기본 StateGraph 생성",
+            "description": "StateGraph 인스턴스를 생성하고 노드를 추가하여 간단한 워크플로우를 구성하는 기본 예제",
+            "code": "from langgraph.graph import StateGraph, START, END\nfrom IPython.display import Image, display\n# StateGraph 객체 생성 (Workflow)\nworkflow = StateGraph(State)\n# 노드 추가\nworkflow.add_node(\"summarize\", generate_summary)\nworkflow.add_edge(START, \"summarize\")\nworkflow.add_edge(\"summarize\", END)\n# 그래프 컴파일\ngraph = workflow.compile()\n# 그래프 시각화\ndisplay(Image(graph.get_graph().draw_mermaid_png()))",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "State 정의 및 TypedDict 사용 예제",
+            "description": "TypedDict를 사용하여 그래프의 상태 구조를 정의하는 기본 예제",
+            "code": "from typing import TypedDict\n# 상태 정의",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "LLM 노드 함수 정의 예제",
+            "description": "ChatOpenAI를 사용하여 요약을 생성하는 노드 함수의 기본 예제",
+            "code": "from langchain_openai import ChatOpenAI\nfrom langchain_google_genai import ChatGoogleGenerativeAI\n# LLM 인스턴스 생성\nllm = ChatOpenAI(model=\"gpt-4.1-mini\")\n# llm = ChatGoogleGenerativeAI(model=\"gemini-2.0-flash\")\n# 요약 생성 노드\n\"\"\"원본 텍스트를 요약하는 노드\"\"\"\n{state['original_text']}\n\"\"\"\nresponse = llm.invoke(prompt)",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "StateGraph invoke 실행 예제",
+            "description": "StateGraph에서 invoke 메서드를 사용하여 그래프를 실행하고 결과를 출력하는 예제",
+            "code": "# 사용 예시\ntext = \"\"\"\n인공지능(AI)은 컴퓨터 과학의 한 분야로, 인간의 학습능력과 추론능력, 지각능력,\n자연언어의 이해능력 등을 컴퓨터 프로그램으로 실현한 기술이다.\n최근에는 기계학습과 딥러닝의 발전으로 다양한 분야에서 활용되고 있다.\n\"\"\"\ninitial_state = {\n}\nfinal_state = graph.invoke(initial_state)\nprint(f\"{key}\")\nprint(\"-\" * 50)\npprint(f\"{value}\")\nprint(\"=\" * 100)",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "StateGraph stream 실행 예제",
+            "description": "StateGraph에서 stream 메서드를 사용하여 중간 상태를 실시간으로 출력하는 예제",
+            "code": "# 1. \"values\" 모드 : 상태 값의 변경사항만 스트리밍\nprint(chunk)\nprint(\"=\" * 100)",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "CodeExample",
+            "title": "OpenAIEmbeddings와 Chroma 벡터DB 기본 사용 예제",
+            "description": "OpenAI 임베딩 모델과 Chroma 벡터 데이터베이스를 초기화하는 기본 예제",
+            "code": "from langchain_openai import OpenAIEmbeddings\nfrom langchain_chroma import Chroma\n# OpenAI 임베딩 모델 생성\nembeddings_openai = OpenAIEmbeddings(model=\"text-embedding-3-small\")\n# 한국어 문서로 저장되어 있는 벡터 저장소 로드\ndb_korean = Chroma(\nembedding_function=embeddings_openai,\ncollection_name=\"db_korean_cosine_metadata\",\npersist_directory=\"./chroma_db\",\n)\n# 영어 문서를 저장하는 벡터 저장소 로드\ndb_english = Chroma(\nembedding_function=embeddings_openai,\ncollection_name=\"eng_db_openai\",\npersist_directory=\"./chroma_db\",\n)\n```\n---\n```",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        }
+    ],
+    "tutorials": [{
+            "type": "Tutorial",
+            "title": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "description": "StateGraph에서 조건부 엣지와 여러 노드를 활용하여 요약 생성, 품질 평가, 개선, 최종 요약까지의 전체 워크플로우를 구현하는 튜토리얼",
+            "code": "from typing import TypedDict, Literal\nfrom langgraph.graph import StateGraph, START, END\nfrom langchain_openai import ChatOpenAI\n# 상태 정의\n# LLM 인스턴스 생성\nllm = ChatOpenAI(model=\"gpt-4.1-mini\")\n# 요약 생성 노드\n\"\"\"원본 텍스트를 요약하는 노드\"\"\"\n{state['original_text']}\n\"\"\"\nresponse = llm.invoke(prompt)\n# 요약 품질 체크 노드 (조건부 엣지와 함께 사용)\n\"\"\"요약의 품질을 체크하고 개선이 필요한지 판단하는 노드\"\"\"\nprompt = f\"\"\"다음 요약의 품질을 평가해주세요.\n원문을 잘 요약했는지 평가해주세요. 요약이 명확하고 핵심을 잘 전달하면 'good'을,\n개선이 필요하면 'needs_improvement'를 응답해주세요.\n\"\"\"\nresponse = llm.invoke(prompt).content.lower().strip()\nprint(\"---- Good Summary ----\")\nreturn \"good\"\nprint(\"---- Needs Improvement ----\")\nreturn \"needs_improvement\"\n# 요약 개선 노드\n\"\"\"요약을 개선하고 다듬는 노드\"\"\"\n\"\"\"\nresponse = llm.invoke(prompt)\n# 요약 완료 노드\n\"\"\"현재 요약을 최종 요약으로 설정하는 노드\"\"\"\n# 워크플로우 구성\nworkflow = StateGraph(State)\nworkflow.add_node(\"generate_summary\", generate_summary)\nworkflow.add_node(\"improve_summary\", improve_summary)\nworkflow.add_node(\"finalize_summary\", finalize_summary)\nworkflow.add_conditional_edges(\n\"generate_summary\",\ncheck_summary_quality,\n{\n}\n)\nworkflow.add_edge(START, \"generate_summary\")\nworkflow.add_edge(\"improve_summary\", END)\nworkflow.add_edge(\"finalize_summary\", END)\ngraph = workflow.compile()",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Tutorial",
+            "title": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "description": "Command 객체를 사용하여 상태 업데이트와 분기 제어를 동시에 처리하는 StateGraph 전체 워크플로우 구현 튜토리얼",
+            "code": "from typing import TypedDict, Literal\nfrom langgraph.graph import StateGraph, START, END\nfrom langgraph.types import Command\nfrom langchain_openai import ChatOpenAI\n# 상태 정의\n# LLM 인스턴스 생성\nsummary_llm = ChatOpenAI(model=\"gpt-4.1-mini\")\neval_llm = ChatOpenAI(model=\"gpt-4.1\")\n# 요약 생성 노드\n\"\"\"원본 텍스트를 요약하고 품질을 평가하는 노드\"\"\"\n# 요약 생성\n{state['original_text']}\n\"\"\"\nsummary = summary_llm.invoke(summary_prompt).content\n# 품질 평가\neval_prompt = f\"\"\"다음 요약의 품질을 평가해주세요.\n요약이 명확하고 핵심을 잘 전달하면 'good'을,\n개선이 필요하면 'needs_improvement'를 응답해주세요.\n\"\"\"\nquality = eval_llm.invoke(eval_prompt).content.lower().strip()\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=\"finalize_summary\" if \"good\" in quality else \"improve_summary\",\n)\n# 요약 개선 노드\n\"\"\"요약을 개선하고 다듬는 노드\"\"\"\n{state['summary']}\n\"\"\"\nimproved_summary = summary_llm.invoke(prompt).content\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=END,\n)\n# 최종 요약 설정 노드\n\"\"\"현재 요약을 최종 요약으로 설정하는 노드\"\"\"\n# 상태 업데이트와 함께 다음 노드로 라우팅\nreturn Command(\ngoto=END,\n)\n# 워크플로우 구성\nworkflow = StateGraph(State)\nworkflow.add_node(\"generate_summary\", generate_summary)\nworkflow.add_node(\"improve_summary\", improve_summary)\nworkflow.add_node(\"finalize_summary\", finalize_summary)\nworkflow.add_edge(START, \"generate_summary\")\ngraph = workflow.compile()",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        },
+        {
+            "type": "Tutorial",
+            "title": "언어 감지 및 DB 라우팅 StateGraph 실습 (조건부 엣지)",
+            "description": "사용자의 언어를 감지하여 한국어/영어 DB를 분기 검색하고 답변을 생성하는 StateGraph 전체 구현 튜토리얼 (조건부 엣지 방식)",
+            "code": "from typing import List, TypedDict, Literal\nfrom langgraph.graph import StateGraph, START, END\nfrom langchain_core.output_parsers import StrOutputParser\nfrom langchain_core.prompts import ChatPromptTemplate\nfrom langchain_openai import ChatOpenAI\n# LLM 인스턴스 생성\nllm = ChatOpenAI(model=\"gpt-4.1-mini\")\n# state 스키마\n\"\"\" 사용자 입력이 한국어인지 판단하는 함수 \"\"\"\n# 사용자 의도를 분석하기 위한 템플릿\nanalyze_template = \"\"\"\n사용자의 입력을 분석하여 한국어인지 판단하세요.\n한국어인 경우 \"True\", 아니면 \"False\"로 답변하세요.\n\"\"\"\n# 사용자 입력을 분석하여 한국어인지 판단\nanalyze_prompt = ChatPromptTemplate.from_template(analyze_template)\nanalyze_chain = analyze_prompt | llm | StrOutputParser()\nis_korean = result.strip().lower() == \"true\"\n# 결과를 상태에 업데이트\n\"\"\" 한국어 문서 검색 함수 \"\"\"\n# 3개의 검색 결과를 가져옴\nresults = db_korean.similarity_search(state['user_query'], k=3)\n# 페이지 내용만 추출\nsearch_results = [doc.page_content for doc in results]\n# 검색 결과를 상태에 저장\n\"\"\" 영어 문서 검색 함수 \"\"\"\n# 3개의 검색 결과를 가져옴\nresults = db_english.similarity_search(state['user_query'], k=3)\n# 페이지 내용만 추출\nsearch_results = [doc.page_content for doc in results]\n# 검색 결과를 상태에 저장\n\"\"\" 답변 생성 함수 \"\"\"\n# 답변 템플릿\nresponse_template = \"\"\"\n위 정보를 바탕으로 사용자의 질문에 대한 상세한 답변을 생성하세요.\n검색 결과의 정보를 활용하여 정확하고 유용한 정보를 제공하세요.\n\"\"\"\n# 답변 생성\nresponse_prompt = ChatPromptTemplate.from_template(response_template)\nresponse_chain = response_prompt | llm | StrOutputParser()\nfinal_answer = response_chain.invoke(\n{\n}\n)\n# 결과를 상태에 저장\ndef decide_next_step(\n\"\"\" 다음 실행 단계를 결정하는 함수 \"\"\"\n# 한국어인 경우 한국어 문서 검색 함수 실행\nreturn \"korean\"\n# 영어인 경우 영어 문서 검색 함수 실행\nreturn \"english\"\n# 그래프 구성\nbuilder = StateGraph(EelectricCarState)\nbuilder.add_node(\"analyze_input\", analyze_input)\nbuilder.add_node(\"korean_rag_search\", korean_rag_search)\nbuilder.add_node(\"english_rag_search\", english_rag_search)\nbuilder.add_node(\"generate_response\", generate_response)\nbuilder.add_edge(START, \"analyze_input\")\n# 조건부 엣지 추가\nbuilder.add_conditional_edges(\n\"analyze_input\",\ndecide_next_step,\n{\n}\n)\nbuilder.add_edge(\"korean_rag_search\", \"generate_response\")\nbuilder.add_edge(\"english_rag_search\", \"generate_response\")\nbuilder.add_edge(\"generate_response\", END)\n# 그래프 컴파일\ngraph = builder.compile()",
+            "source": "DAY05_001_LangGraph_StateGraph"
+        }
+    ],
+    "relationships": [{
+            "type": "IMPLEMENTS",
+            "from": "StateGraph",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "Command",
+            "to": "Command Pattern"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "TypedDict",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "ChatOpenAI",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "ChatGoogleGenerativeAI",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "OpenAIEmbeddings",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "Chroma",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "StrOutputParser",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "ChatPromptTemplate",
+            "to": "State Management"
+        },
+        {
+            "type": "USES",
+            "from": "기본 StateGraph 생성",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "State 정의 및 TypedDict 사용 예제",
+            "to": "TypedDict"
+        },
+        {
+            "type": "USES",
+            "from": "LLM 노드 함수 정의 예제",
+            "to": "ChatOpenAI"
+        },
+        {
+            "type": "USES",
+            "from": "StateGraph invoke 실행 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "StateGraph stream 실행 예제",
+            "to": "StateGraph"
+        },
+        {
+            "type": "USES",
+            "from": "OpenAIEmbeddings와 Chroma 벡터DB 기본 사용 예제",
+            "to": "OpenAIEmbeddings"
+        },
+        {
+            "type": "USES",
+            "from": "OpenAIEmbeddings와 Chroma 벡터DB 기본 사용 예제",
+            "to": "Chroma"
+        },
+        {
+            "type": "APPLIES",
+            "from": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "to": "State Management"
+        },
+        {
+            "type": "APPLIES",
+            "from": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "to": "Conditional Routing"
+        },
+        {
+            "type": "APPLIES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "State Management"
+        },
+        {
+            "type": "APPLIES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "Command Pattern"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Conditional Routing",
+            "to": "Graph Structure"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Command Pattern",
+            "to": "State Management"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Multi-Agent Systems",
+            "to": "State Management"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "to": "StateGraph"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "to": "ChatOpenAI"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "조건부 분기와 요약 개선이 포함된 StateGraph 워크플로우 구현",
+            "to": "TypedDict"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "StateGraph"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "Command"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "ChatOpenAI"
+        },
+        {
+            "type": "INCLUDES",
+            "from": "Command 패턴을 활용한 StateGraph 워크플로우 구현",
+            "to": "TypedDict"
+        }
+    ],
+    "statistics": {
+        "concepts": 4,
+        "components": 10,
+        "code_examples": 5,
+        "tutorials": 4,
+        "relationships": 48
+    }
+}

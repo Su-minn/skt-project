@@ -1,0 +1,295 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "StateGraph",
+      "description": "상태 기반의 그래프 구조를 사용하여 대화 흐름을 체계적으로 관리하는 핵심 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "State",
+      "description": "그래프에서 처리하는 데이터의 기본 구조로, 노드 간에 공유되며 유연하게 관리됨",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Node",
+      "description": "그래프의 기본 구성 요소로, 독립적인 작업 단위이며 상태를 입력받아 처리 후 업데이트된 상태를 반환함",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Edge",
+      "description": "노드 간의 연결 경로를 정의하며, 대화 흐름의 분기와 전환을 담당하는 그래프의 핵심 요소",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Edge",
+      "description": "상태나 입력에 따라 노드 간 경로를 동적으로 분기할 수 있게 하는 그래프의 분기 처리 개념",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 지정할 수 있는 LangGraph의 제어 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Stream Execution",
+      "description": "그래프 실행의 중간 상태를 실시간으로 확인할 수 있는 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Invoke Execution",
+      "description": "그래프의 전체 실행이 완료된 후 최종 결과만 반환하는 기본 실행 방식",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "상태(State)를 기반으로 데이터 흐름과 처리를 체계적으로 제어하는 원리",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Concept",
+      "name": "LangGraph Studio",
+      "description": "다중 에이전트 워크플로우를 개발, 테스트, 관리할 수 있는 LangGraph의 시각적 도구",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "State (TypedDict)",
+      "description": "그래프의 상태 구조를 정의하는 TypedDict 클래스",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Node Function",
+      "description": "그래프 내에서 독립적으로 실행되는 작업 단위 함수",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 노드 이동을 동시에 지정하는 LangGraph의 객체",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM을 호출하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "벡터 DB를 관리하고 유사도 검색을 제공하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "텍스트 임베딩을 생성하는 OpenAI 기반 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LLM 프롬프트를 템플릿 형태로 관리하는 LangChain 컴포넌트",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "StateGraph 기본 사용 예제",
+      "description": "StateGraph 객체 생성, 노드 추가, 엣지 연결, 컴파일 및 실행의 기본 패턴",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 엣지와 상태 분기 예제",
+      "description": "요약 품질 평가에 따라 분기하는 조건부 엣지와 노드 연결 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Stream 모드 실행 예제",
+      "description": "그래프 실행 중 중간 상태를 실시간으로 출력하는 stream 모드 사용법",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command 객체를 활용한 상태 및 흐름 제어 예제",
+      "description": "Command 객체로 상태 업데이트와 다음 노드 이동을 동시에 처리하는 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "언어별 RAG 라우팅 StateGraph 예제",
+      "description": "사용자 언어 감지 후 한국어/영어 DB를 선택적으로 검색하는 StateGraph 코드 예시",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Tutorial",
+      "title": "상태 기반 요약 챗봇 StateGraph 구현",
+      "description": "상태 정의, 노드 작성, 조건부 엣지 및 Command를 활용한 요약 챗봇 StateGraph 전체 구현 실습",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Tutorial",
+      "title": "언어별 RAG 라우팅 구현",
+      "description": "사용자 언어를 감지하고 한국어/영어 DB를 선택적으로 검색하는 StateGraph 전체 구현 실습",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph (Component)",
+      "to": "StateGraph (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "State (TypedDict) (Component)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Node Function (Component)",
+      "to": "Node (Concept)"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Command (Component)",
+      "to": "Command (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 사용 예제 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지와 상태 분기 예제 (CodeExample)",
+      "to": "Conditional Edge (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "Stream 모드 실행 예제 (CodeExample)",
+      "to": "Stream Execution (Concept)"
+    },
+    {
+      "type": "USES",
+      "from": "Command 객체를 활용한 상태 및 흐름 제어 예제 (CodeExample)",
+      "to": "Command (Component)"
+    },
+    {
+      "type": "USES",
+      "from": "언어별 RAG 라우팅 StateGraph 예제 (CodeExample)",
+      "to": "StateGraph (Component)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "상태 기반 요약 챗봇 StateGraph 구현 (Tutorial)",
+      "to": "State Management (Concept)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "Conditional Edge (Concept)"
+    },
+    {
+      "type": "APPLIES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "Command (Concept)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "OpenAIEmbeddings (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "ChatPromptTemplate (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "언어별 RAG 라우팅 구현 (Tutorial)",
+      "to": "StrOutputParser (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "Command (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "ChatOpenAI (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "Chroma (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "OpenAIEmbeddings (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "ChatPromptTemplate (Component)"
+    },
+    {
+      "type": "INCLUDES",
+      "from": "Command 기반 언어별 RAG 라우팅 실습 (Tutorial)",
+      "to": "StrOutputParser (Component)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Node (Concept)",
+      "to": "State (Concept)"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Edge (Concept)",
+      "to": "Node (Concept)"
+    }
+  ],
+  "statistics": {
+    "concepts": 9,
+    "components": 9,
+    "code_examples": 4,
+    "tutorials": 3,
+    "relationships": 25
+  }
+}

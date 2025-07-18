@@ -1,0 +1,286 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "그래프에서 데이터를 관리하고 노드 간에 공유하는 개념. 상태(State)는 데이터의 기본 구조를 정의하며, 각 노드는 상태를 입력으로 받아 처리하고 업데이트된 상태를 반환한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Graph Structure",
+      "description": "노드(Node)와 엣지(Edge)로 구성된 데이터 흐름 구조. 각 노드는 독립적인 작업 단위이며, 엣지는 노드 간의 연결 경로를 정의한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Routing",
+      "description": "조건부 엣지 또는 Command 객체를 통해 상태나 입력에 따라 그래프의 실행 경로를 동적으로 분기하는 개념.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Streaming Execution",
+      "description": "그래프 실행의 중간 과정을 실시간으로 확인할 수 있는 실행 방식. 각 노드의 실행 결과가 순차적으로 스트리밍되어 처리 흐름을 모니터링할 수 있다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Command Pattern",
+      "description": "상태 업데이트와 다음 실행 노드 지정을 동시에 처리하는 패턴. Command 객체를 반환하여 복잡한 전환과 상태 변경을 효율적으로 구현한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Component",
+      "name": "RAG Routing",
+      "description": "입력 언어를 감지하여 적절한 데이터베이스(한국어/영어)를 선택적으로 검색하는 라우팅 개념.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "상태 기반 워크플로우를 구현하는 LangGraph의 핵심 클래스. 노드와 엣지로 그래프를 구성하고 실행을 관리한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "TypedDict",
+      "description": "Python의 타입 힌팅을 위한 딕셔너리 타입. 그래프의 상태 구조를 정의하는 데 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM 인스턴스를 생성하는 클래스. LangChain에서 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatGoogleGenerativeAI",
+      "description": "Google Generative AI 기반 LLM 인스턴스를 생성하는 클래스.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "상태 업데이트와 다음 실행 노드 지정을 동시에 처리하는 객체. LangGraph의 제어 흐름에 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "벡터 DB를 관리하는 LangChain 컴포넌트. 문서 임베딩 및 검색에 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "OpenAI 임베딩 모델을 생성하는 LangChain 컴포넌트.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StrOutputParser",
+      "description": "LLM의 출력을 문자열로 파싱하는 LangChain 컴포넌트.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LLM 프롬프트를 템플릿화하여 생성하는 LangChain 컴포넌트.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "기본 StateGraph 생성",
+      "description": "StateGraph 인스턴스를 생성하고 노드 및 엣지를 추가하여 간단한 요약 챗봇 워크플로우를 구현하는 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 엣지 StateGraph 예제",
+      "description": "요약 품질 평가에 따라 분기하는 조건부 엣지와 여러 노드를 포함한 StateGraph 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "StateGraph invoke 실행 예제",
+      "description": "StateGraph의 invoke 메서드를 사용하여 전체 워크플로우를 동기적으로 실행하는 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "StateGraph stream 실행 예제",
+      "description": "StateGraph의 stream 메서드를 사용하여 실행 중간 과정을 실시간으로 출력하는 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command 패턴 StateGraph 예제",
+      "description": "Command 객체를 반환하여 상태 업데이트와 분기 제어를 동시에 처리하는 StateGraph 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "RAG 라우팅 StateGraph 예제",
+      "description": "입력 언어를 감지하여 한국어/영어 DB를 선택적으로 검색하는 RAG 라우팅 StateGraph 예제.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Graph Structure"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Conditional Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Streaming Execution"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Command",
+      "to": "Command Pattern"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Chroma",
+      "to": "RAG Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "OpenAIEmbeddings",
+      "to": "RAG Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatOpenAI",
+      "to": "RAG Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatPromptTemplate",
+      "to": "RAG Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StrOutputParser",
+      "to": "RAG Routing"
+    },
+    {
+      "type": "USES",
+      "from": "기본 StateGraph 생성",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "기본 StateGraph 생성",
+      "to": "TypedDict"
+    },
+    {
+      "type": "USES",
+      "from": "기본 StateGraph 생성",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지 StateGraph 예제",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지 StateGraph 예제",
+      "to": "TypedDict"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지 StateGraph 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지 StateGraph 예제",
+      "to": "ChatGoogleGenerativeAI"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph invoke 실행 예제",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph stream 실행 예제",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "Command 패턴 StateGraph 예제",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "Command 패턴 StateGraph 예제",
+      "to": "Command"
+    },
+    {
+      "type": "USES",
+      "from": "Command 패턴 StateGraph 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "Chroma"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "OpenAIEmbeddings"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "ChatPromptTemplate"
+    },
+    {
+      "type": "USES",
+      "from": "RAG 라우팅 StateGraph 예제",
+      "to": "StrOutputParser"
+    }
+  ],
+  "statistics": {
+    "concepts": 5,
+    "components": 10,
+    "code_examples": 5,
+    "tutorials": 1,
+    "relationships": 36
+  }
+}

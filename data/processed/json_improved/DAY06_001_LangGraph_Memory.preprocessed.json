@@ -1,0 +1,295 @@
+{
+    "source_file": "DAY06_001_LangGraph_Memory",
+    "concepts": [{
+            "type": "Concept",
+            "name": "Short-term Memory",
+            "description": "단일 대화 세션 내에서 상호작용을 추적하고, LangGraph의 상태(state)로 관리되는 단기 메모리 개념. 체크포인터를 통해 지속적으로 저장되며 대화 연속성과 상태 지속성을 보장한다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Long-term Memory",
+            "description": "여러 세션에 걸쳐 정보를 저장하고, 네임스페이스와 키-값 구조로 관리되는 장기 메모리 개념. 시맨틱 검색과 DB 연동이 가능하다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Memory Management",
+            "description": "LangGraph에서 대화 기록, 상태, 메모리의 저장/검색/요약/트리밍 등 전체적인 메모리 관리 전략과 원리.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "State Management",
+            "description": "그래프에서 데이터를 관리하고 노드 간 공유하는 개념. 상태 정의, 업데이트, 체크포인트, 복원 등 포함.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Checkpointing",
+            "description": "그래프 실행 중 각 단계의 상태를 저장하고, 특정 시점으로 복원하거나 재생(replay)할 수 있게 하는 개념.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Semantic Search",
+            "description": "임베딩 모델을 활용해 저장된 메모리(문서, 대화 등)를 의미 기반으로 검색하는 개념.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Message Trimming",
+            "description": "LLM의 컨텍스트 제한을 고려해 오래된 메시지를 삭제하거나 일부만 유지하는 전략.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Concept",
+            "name": "Message Summarization",
+            "description": "오래된 대화 메시지를 요약하여 컨텍스트를 유지하면서 메시지 길이를 줄이는 전략.",
+            "source": "DAY06_001_LangGraph_Memory"
+        }
+    ],
+    "components": [{
+            "type": "Component",
+            "name": "Namespace-based Storage",
+            "description": "메모리 저장소에서 네임스페이스(예: (user_id, \"memories\"))로 데이터를 구분하여 저장하는 방식.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "StateGraph",
+            "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스. 노드, 엣지, 조건부 분기 등을 정의하고 실행한다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "InMemorySaver",
+            "description": "LangGraph에서 메모리 기반 체크포인터를 제공하는 클래스. 디버깅/테스트 용도로 사용된다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "SqliteSaver",
+            "description": "LangGraph에서 SQLite 기반 체크포인터를 제공하는 클래스. 파일 또는 메모리 DB로 상태를 저장한다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "PostgresSaver",
+            "description": "LangGraph에서 PostgreSQL 기반 체크포인터를 제공하는 클래스. 대규모 프로덕션 환경에 적합하다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "InMemoryStore",
+            "description": "LangGraph에서 네임스페이스 기반의 키-값 메모리 저장소를 제공하는 클래스. 시맨틱 검색 지원.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "ChatOpenAI",
+            "description": "OpenAI의 챗 모델을 래핑하여 LangGraph에서 사용할 수 있게 하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "ToolNode",
+            "description": "LangGraph에서 도구(tool) 실행을 담당하는 노드 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "OpenAIEmbeddings",
+            "description": "텍스트 임베딩을 생성하는 OpenAI 임베딩 모델 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "Chroma",
+            "description": "벡터 DB로, LangChain/LangGraph에서 임베딩 기반 검색을 위해 사용되는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "MessagesState",
+            "description": "LangGraph에서 메시지 기반 상태를 관리하는 클래스. 대화 기록, 메시지 트리밍, 요약 등에 활용된다.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "HumanMessage",
+            "description": "LangChain/LangGraph에서 사용자 메시지를 표현하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "SystemMessage",
+            "description": "LangChain/LangGraph에서 시스템 메시지를 표현하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "ToolMessage",
+            "description": "LangChain/LangGraph에서 도구 실행 결과 메시지를 표현하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "RemoveMessage",
+            "description": "LangGraph에서 메시지 삭제를 명시적으로 지정하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "TypedDict",
+            "description": "Python의 타입 힌팅을 위한 딕셔너리 타입 정의 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "Component",
+            "name": "ChatPromptTemplate",
+            "description": "LangChain에서 챗 프롬프트를 템플릿화하여 생성하는 컴포넌트.",
+            "source": "DAY06_001_LangGraph_Memory"
+        }
+    ],
+    "code_examples": [{
+            "type": "CodeExample",
+            "title": "InMemoryStore 기본 사용법",
+            "description": "InMemoryStore를 생성하고 네임스페이스에 메모리를 저장하는 기본 예제",
+            "code": "from langgraph.store.memory import InMemoryStore\nimport uuid\n# InMemoryStore 생성\nstore = InMemoryStore()\n# namespace 정의\nuser_id = \"1\"\nnamespace = (user_id, \"memories\")\n# 메모리 저장\nmemory_id = str(uuid.uuid4())\nmemory = {\n}\nstore.put(namespace, memory_id, memory)",
+            "source": "DAY06_001_LangGraph_Memory"
+        },
+        {
+            "type": "CodeExample",
+            "title": "InMemoryStore 시맨틱 검색",
+            "description": "임베딩 모델을 활용하여 InMemoryStore에서 의미 기반 검색을 수행하는 예제",
+            "code": "from langchain_openai import OpenAIEmbeddings\n# 임베딩 함수 정의\nembeddings_model = OpenAIEmbeddings(model=\"text-embedding-3-small\")\nreturn embeddings_model.embed_documents(texts)\n# 임베딩 모델을 사용하는 store 생성\nsemantic_store = InMemoryStore(\nindex={\n)\n# 여러 메모리 저장\nmemories_to_store = [\n{\n},\n{\n},\n{\n}\n]\nmemory_id = str(uuid.uuid4())\nsemantic_store.put(namespace, memory_id, memory)",
+            "source": "DAY06_001_LangGraph_Memory"
+        }
+    ],
+    "tutorials": [{
+        "type": "Tutorial",
+        "title": "SqliteSaver를 이용한 체크포인터 설정",
+        "description": "SqliteSaver를 사용하여 StateGraph의 체크포인터를 SQLite DB로 설정하는 예제",
+        "code": "from langgraph.checkpoint.sqlite import SqliteSaver\n# 메모리 저장소를 지정하여 그래프 컴파일\ngraph_memory = workflow.compile(checkpointer=checkpointer)\n# thred_id 설정\n# 초기 메시지 설정\n# 그래프 실행\noutput = graph_memory.invoke(initial_input, config)\n# 최종 결과 출력\npprint(output)\n```\n---\n```",
+        "source": "DAY06_001_LangGraph_Memory"
+    }],
+    "relationships": [{
+            "type": "IMPLEMENTS",
+            "from": "StateGraph",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "InMemorySaver",
+            "to": "Checkpointing"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "SqliteSaver",
+            "to": "Checkpointing"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "PostgresSaver",
+            "to": "Checkpointing"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "InMemoryStore",
+            "to": "Namespace-based Storage"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "InMemoryStore",
+            "to": "Semantic Search"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "MessagesState",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "ToolNode",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "ChatOpenAI",
+            "to": "State Management"
+        },
+        {
+            "type": "IMPLEMENTS",
+            "from": "OpenAIEmbeddings",
+            "to": "Semantic Search"
+        },
+        {
+            "type": "USES",
+            "from": "InMemoryStore 기본 사용법",
+            "to": "InMemoryStore"
+        },
+        {
+            "type": "USES",
+            "from": "InMemoryStore 시맨틱 검색",
+            "to": "InMemoryStore"
+        },
+        {
+            "type": "USES",
+            "from": "InMemoryStore 시맨틱 검색",
+            "to": "OpenAIEmbeddings"
+        },
+        {
+            "type": "USES",
+            "from": "SqliteSaver를 이용한 체크포인터 설정",
+            "to": "SqliteSaver"
+        },
+        {
+            "type": "USES",
+            "from": "SqliteSaver를 이용한 체크포인터 설정",
+            "to": "StateGraph"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Long-term Memory",
+            "to": "Namespace-based Storage"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Semantic Search",
+            "to": "Long-term Memory"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Message Trimming",
+            "to": "Short-term Memory"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Message Summarization",
+            "to": "Short-term Memory"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Short-term Memory",
+            "to": "State Management"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Checkpointing",
+            "to": "State Management"
+        },
+        {
+            "type": "REQUIRES",
+            "from": "Memory Management",
+            "to": "State Management"
+        }
+    ],
+    "statistics": {
+        "concepts": 8,
+        "components": 17,
+        "code_examples": 2,
+        "tutorials": 1,
+        "relationships": 30
+    }
+}

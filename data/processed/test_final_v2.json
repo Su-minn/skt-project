@@ -1,0 +1,159 @@
+{
+  "source_file": "DAY05_001_LangGraph_StateGraph",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "그래프에서 데이터를 관리하고 노드 간에 공유하는 개념. 각 상태는 노드 실행 중에 업데이트되며, 전체 워크플로우의 데이터 흐름을 제어한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Graph Structure",
+      "description": "노드와 엣지로 구성된 추상적 데이터 흐름 구조. 각 노드는 독립적인 작업 단위이며, 엣지는 노드 간의 데이터 이동 경로를 정의한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Routing",
+      "description": "상태나 입력값에 따라 그래프의 실행 경로를 동적으로 분기하는 개념. 조건부 엣지 또는 Command 객체를 통해 구현된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "components": [
+    {
+      "type": "Component",
+      "name": "Command Pattern",
+      "description": "상태 업데이트와 다음 실행 노드 지정을 동시에 처리하는 제어 패턴. 복잡한 분기와 상태 변환이 필요한 워크플로우에서 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스. 노드와 엣지, 조건부 분기, Command 패턴을 지원한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Command",
+      "description": "그래프 실행 중 상태 업데이트와 다음 노드 이동을 동시에 지정하는 객체. 복잡한 분기와 상태 변환에 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "TypedDict",
+      "description": "Python의 타입 힌팅을 위한 딕셔너리 타입. 그래프의 상태 구조를 명확하게 정의하는 데 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI 기반 LLM을 호출하는 LangChain 컴포넌트. 그래프 내에서 자연어 처리 및 요약, 분류 등에 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "LangChain에서 사용하는 벡터 DB 컴포넌트. 문서 임베딩 및 유사도 검색에 활용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "텍스트 임베딩 생성을 위한 LangChain 컴포넌트. Chroma 등 벡터 DB와 함께 사용된다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LangChain에서 프롬프트 템플릿을 생성하는 컴포넌트. LLM 입력 프롬프트를 동적으로 구성한다.",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "기본 StateGraph 생성",
+      "description": "StateGraph 인스턴스를 생성하고 노드를 추가, 엣지를 설정한 후 컴파일하는 예제",
+      "code": "workflow = StateGraph(State)",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "조건부 엣지 추가",
+      "description": "조건부 엣지를 사용하여 요약 품질에 따라 분기하는 예제",
+      "code": "workflow.add_conditional_edges(",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Command를 활용한 분기 및 상태 업데이트",
+      "description": "Command 객체를 반환하여 상태 업데이트와 다음 노드 이동을 동시에 처리하는 예제",
+      "code": "def generate_summary(state: State) -> Command[Literal[\"improve_summary\", \"finalize_summary\"]]:",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "그래프 stream 실행 예시",
+      "description": "stream 모드로 그래프를 실행하여 중간 상태를 실시간으로 출력하는 예제",
+      "code": "for chunk in graph.stream(initial_state, stream_mode=\"values\"):",
+      "source": "DAY05_001_LangGraph_StateGraph"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Graph Structure"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "Conditional Routing"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Command",
+      "to": "Command Pattern"
+    },
+    {
+      "type": "USES",
+      "from": "기본 StateGraph 생성",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "조건부 엣지 추가",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "Command를 활용한 분기 및 상태 업데이트",
+      "to": "Command"
+    },
+    {
+      "type": "USES",
+      "from": "Command를 활용한 분기 및 상태 업데이트",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "그래프 stream 실행 예시",
+      "to": "StateGraph"
+    }
+  ],
+  "statistics": {
+    "concepts": 3,
+    "components": 8,
+    "code_examples": 3,
+    "tutorials": 1,
+    "relationships": 13
+  }
+}

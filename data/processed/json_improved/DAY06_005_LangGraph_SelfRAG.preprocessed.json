@@ -1,0 +1,282 @@
+{
+  "source_file": "DAY06_005_LangGraph_SelfRAG",
+  "concepts": [
+    {
+      "type": "Concept",
+      "name": "Retrieval-Augmented Generation",
+      "description": "외부 지식 소스를 검색하여 LLM의 답변 생성을 보강하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Self-Reflection in RAG",
+      "description": "RAG 시스템에서 검색, 평가, 생성, 환각 감지 등 각 단계를 LLM이 스스로 평가하고 개선하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Vector Store",
+      "description": "임베딩 기반으로 문서 검색을 지원하는 데이터 저장소 구조",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Document Relevance Grading",
+      "description": "검색된 문서가 질문과 얼마나 관련 있는지 평가하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Hallucination Detection",
+      "description": "LLM이 생성한 답변이 실제 컨텍스트에 근거하는지 평가하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Answer Quality Grading",
+      "description": "LLM의 답변이 질문을 충분히 해결하는지 평가하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Query Rewriting",
+      "description": "검색 효율을 높이기 위해 질문을 명확하고 간결하게 재작성하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "State Management",
+      "description": "그래프 기반 워크플로우에서 상태를 정의하고 노드 간에 전달하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Node Function",
+      "description": "그래프 내에서 특정 역할(검색, 생성, 평가 등)을 수행하는 함수 단위",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Concept",
+      "name": "Conditional Routing",
+      "description": "평가 결과에 따라 그래프의 다음 노드로 분기하는 제어 흐름 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    }
+  ],
+  "components": [
+    {
+      "type": "Component",
+      "name": "Workflow Orchestration",
+      "description": "여러 단계의 AI 처리 과정을 그래프 형태로 연결하여 자동화하는 개념",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "Chroma",
+      "description": "임베딩 기반 벡터 저장소를 제공하는 라이브러리의 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "OpenAIEmbeddings",
+      "description": "텍스트 임베딩 생성을 위한 OpenAI 기반 임베딩 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "ChatOpenAI",
+      "description": "OpenAI의 챗 기반 LLM을 래핑하는 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "ChatPromptTemplate",
+      "description": "LLM 프롬프트를 체계적으로 구성하는 템플릿 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "RunnablePassthrough",
+      "description": "LangChain에서 입력을 그대로 전달하는 파이프라인 컴포넌트",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "BaseModel",
+      "description": "Pydantic 기반 데이터 모델의 베이스 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "Field",
+      "description": "Pydantic 모델에서 필드의 메타데이터와 검증을 정의하는 함수",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "StateGraph",
+      "description": "LangGraph에서 상태 기반 워크플로우를 구현하는 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "Document",
+      "description": "LangChain에서 문서 객체를 표현하는 클래스",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "Component",
+      "name": "StrOutputParser",
+      "description": "LLM의 출력을 문자열로 파싱하는 컴포넌트",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    }
+  ],
+  "code_examples": [
+    {
+      "type": "CodeExample",
+      "title": "벡터 저장소 및 검색기 기본 설정",
+      "description": "Chroma와 OpenAIEmbeddings를 사용하여 벡터 저장소를 로드하고 검색기를 생성하는 기본 예제",
+      "code": "from langchain_chroma import Chroma\nfrom langchain_openai import OpenAIEmbeddings\nembeddings_model = OpenAIEmbeddings(model=\"text-embedding-3-small\")\n# Chroma 인덱스 로드\nvector_db = Chroma(\nembedding_function=embeddings_model,\ncollection_name=\"restaurant_menu\",\npersist_directory=\"./chroma_db\",\n)\n# 검색기 생성\n# 검색 테스트\nquery = \"스테이크와 어울리는 와인을 추천해주세요.\"\nresults = retriever.invoke(query)\nfrom pprint import pprint\npprint(results)\n```\n```",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    },
+    {
+      "type": "CodeExample",
+      "title": "Retrieval Grader 데이터 모델 및 LLM 초기화",
+      "description": "검색된 문서의 관련성 평가를 위한 데이터 모델과 LLM을 초기화하는 예제",
+      "code": "from langchain_core.prompts import ChatPromptTemplate\nfrom langchain_openai import ChatOpenAI\nfrom langchain_core.runnables import RunnablePassthrough\nfrom pydantic import BaseModel, Field\nfrom typing import Literal\n# 검색된 문서의 관련성 평가 결과를 위한 데이터 모델 정의\n\"\"\"Binary score for relevance check on retrieved documents.\"\"\"\ndescription=\"Documents are relevant to the question, 'yes' or 'no'\"\n)\n# LLM 모델 초기화 및 구조화된 출력 설정\nllm = ChatOpenAI(model=\"gpt-4.1\", temperature=0)\nstructured_llm_grader = llm.with_structured_output(GradeDocuments)\n```\n```",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    }
+  ],
+  "tutorials": [
+    {
+      "type": "CodeExample",
+      "title": "StateGraph 기본 노드 및 상태 정의",
+      "description": "LangGraph에서 사용할 상태와 노드 함수의 기본 구조를 정의하는 예제",
+      "code": "from typing import List, TypedDict\nfrom langchain_core.documents import Document\n# Node 정의\n\"\"\"문서를 검색하는 함수\"\"\"\nprint(\"--- 문서 검색 ---\")\nquestion = state[\"question\"]\n# 문서 검색 로직\ndocuments = vector_db.similarity_search(question)\n```\n---\n```",
+      "source": "DAY06_005_LangGraph_SelfRAG"
+    }
+  ],
+  "relationships": [
+    {
+      "type": "IMPLEMENTS",
+      "from": "Chroma",
+      "to": "Vector Store"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StateGraph",
+      "to": "State Management"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatPromptTemplate",
+      "to": "Workflow Orchestration"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "ChatOpenAI",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "StrOutputParser",
+      "to": "Workflow Orchestration"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "BaseModel",
+      "to": "Document Relevance Grading"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Field",
+      "to": "Document Relevance Grading"
+    },
+    {
+      "type": "IMPLEMENTS",
+      "from": "Document",
+      "to": "Vector Store"
+    },
+    {
+      "type": "USES",
+      "from": "벡터 저장소 및 검색기 기본 설정",
+      "to": "Chroma"
+    },
+    {
+      "type": "USES",
+      "from": "벡터 저장소 및 검색기 기본 설정",
+      "to": "OpenAIEmbeddings"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 데이터 모델 및 LLM 초기화",
+      "to": "ChatPromptTemplate"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 데이터 모델 및 LLM 초기화",
+      "to": "ChatOpenAI"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 데이터 모델 및 LLM 초기화",
+      "to": "BaseModel"
+    },
+    {
+      "type": "USES",
+      "from": "Retrieval Grader 데이터 모델 및 LLM 초기화",
+      "to": "Field"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 노드 및 상태 정의",
+      "to": "StateGraph"
+    },
+    {
+      "type": "USES",
+      "from": "StateGraph 기본 노드 및 상태 정의",
+      "to": "Document"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Self-Reflection in RAG",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Document Relevance Grading",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Hallucination Detection",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Answer Quality Grading",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Query Rewriting",
+      "to": "Retrieval-Augmented Generation"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Conditional Routing",
+      "to": "State Management"
+    },
+    {
+      "type": "REQUIRES",
+      "from": "Workflow Orchestration",
+      "to": "State Management"
+    }
+  ],
+  "statistics": {
+    "concepts": 10,
+    "components": 11,
+    "code_examples": 2,
+    "tutorials": 1,
+    "relationships": 43
+  }
+}
